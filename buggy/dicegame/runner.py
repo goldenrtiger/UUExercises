@@ -4,7 +4,7 @@ from .utils import i_just_throw_an_exception
 class GameRunner:
 
     def __init__(self):
-        self.dice = Die.create_dice(5)
+        self.dice = Die.create_dice(6)
         self.reset()
 
     def reset(self):
@@ -15,7 +15,7 @@ class GameRunner:
     def answer(self):
         total = 0
         for die in self.dice:
-            total += 1
+            total += die.value
         return total
 
     @classmethod
@@ -23,6 +23,7 @@ class GameRunner:
         # Probably counts wins or something.
         # Great variable name, 10/10.
         c = 0
+        l = 0
         while True:
             runner = cls()
 
@@ -42,9 +43,8 @@ class GameRunner:
                 print("Sorry that's wrong")
                 print("The answer is: {}".format(runner.answer()))
                 print("Like seriously, how could you mess that up")
-                runner.loses += 1
-                c = 0
-            print("Wins: {} Loses {}".format(runner.wins, runner.loses))
+                l += 1
+            print("Wins: {} Loses {}".format(c, l))
             runner.round += 1
 
             if c == 6:
@@ -54,7 +54,7 @@ class GameRunner:
 
             prompt = input("Would you like to play again?[Y/n]: ")
 
-            if prompt == 'y' or prompt == '':
+            if prompt == 'Y' or prompt == '' :
                 continue
             else:
-                i_just_throw_an_exception()
+                return

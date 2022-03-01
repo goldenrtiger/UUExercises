@@ -32,7 +32,7 @@ def factorize(n,primes):
         factors.append(n)
     return factors
 
-    
+@profile   
 def phi(n,primes):
     factors = factorize(n,primes)
     p = 1
