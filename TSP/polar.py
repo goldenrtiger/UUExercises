@@ -10,6 +10,11 @@ from scipy.spatial.distance import squareform, cdist
 import matplotlib.pyplot as plt
 
 class Calcu():
+    '''
+        Calculation based on polar coordinates
+        input: 
+            multiCity: use MultiCity class from city package
+    '''
     def __init__(self, multiCity):
         self.polar = []
         self.points = []
@@ -33,6 +38,15 @@ class Calcu():
     def dropPDByRowName(self, df, row):
         df.drop( labels=row, axis=0, inplace=True )
 
+    '''
+        use pandas library as a basic 
+        idea: sort data by polar R and theta, seperately
+              1. Select the first one (origin) in sortR as a basic
+              2. Remove the origin in sortR and sortTheta
+              3. compare the following three data in sortR and sortTheta to pick one shortest city. 
+              
+
+    '''
     def sortPD(self):
         rThetaPoints = list( zip( self.multiCity.r, self.multiCity.theta, self.multiCity.x, self.multiCity.y ) )
         pData = pd.DataFrame(rThetaPoints)
